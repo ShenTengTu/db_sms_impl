@@ -1,5 +1,4 @@
 # 簡易會員系統實現（SMS_Impl） ：資料庫規劃
-S
 Local OS: Ubuntu 18.04
 RDB: PostgreSQL 13
 
