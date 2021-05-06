@@ -1,19 +1,24 @@
-CREATE TABLE IF NOT EXISTS member  (
-   member_id serial,
-   user_email text NOT NULL ,
-   user_name varchar(32) NOT NULL ,
-   rigister_time timestamp NOT NULL ,
-   email_verified boolean Default false,
-   PRIMARY KEY (member_id),
-   UNIQUE (user_email, user_name)
-);
+/* postgresql */
+
+CREATE TABLE IF NOT EXISTS member (
+	member_id SERIAL NOT NULL, 
+	user_email TEXT NOT NULL, 
+	user_name VARCHAR(32) NOT NULL, 
+	password_hash CHAR(60) NOT NULL, 
+	rigister_time TIMESTAMP WITHOUT TIME ZONE NOT NULL, 
+	email_verified BOOLEAN, 
+	PRIMARY KEY (member_id), 
+	UNIQUE (user_email), 
+	UNIQUE (user_name)
+)
+
 
 CREATE TABLE IF NOT EXISTS member_profile (
-    profile_id serial,
-    member_id int  REFERENCES member ON DELETE CASCADE,
-    display_name varchar(64) NOT NULL,
-    intro varchar(256),
-    avatar_path text,
-    PRIMARY KEY (profile_id),
-    UNIQUE (member_id)
-);
+	member_id INTEGER NOT NULL, 
+	display_name VARCHAR(64) NOT NULL, 
+	intro VARCHAR(256), 
+	avatar_path TEXT, 
+	PRIMARY KEY (member_id), 
+	FOREIGN KEY(member_id) REFERENCES member (member_id) ON DELETE CASCADE
+)
+
